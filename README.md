@@ -1,94 +1,24 @@
-# Telegram adicionado
-Inserir seus dados no arquivo `config.yaml.example` e renomear para `config.yaml`. 
+
+
+# Sobre
+
+Este repositório é um fork do https://github.com/mpcabete/bombcrypto-bot, com as minhas modificações.
+
+Bot para realizar cliques automaticos no jogo BombCrypto, com reconhecimento de telas e botões, podendo ficar longe do computador enquanto o Python joga sozinho.
+- Resolução automatica de captcha.
+- Integração com Telegram, enviando status, quantidade de BCoins e print dos mapas.
+
+
+### Aviso:
+
+Os desenvolvedores do jogo Bombcrypto se pronunciaram e agora o uso de auto clickers e o uso de bots é oficialmente PROIBIDO.
+Não me responsabilizo por eventuais penalidades sofridas por quem usar o bot, use por sua própria conta e risco.
 
 
 
-# Novo captcha implementado!!
-Feito com a ajuda do gradissíssimo [Nucito](https://github.com/Nucito/CaptchaSolver)!
+# Instalação (windows):
 
-
-## Não se esqueça de mandar aquele apoio, vamos continuar na luta!
-
-Baixe novamente todos os arquivos.
-Rode novamente o comando.
-  `pip install -r requirements.txt`
-  
-Lucre!
-
-# New captcha implemented!!
-## Don't forget to send me some love 🧡
-
-Download tha files again.
-Run again the command:
-  `pip install -r requirements.txt`
-  
-Profit!
-
-### Smart Chain Wallet:
-#### 0xbd06182D8360FB7AC1B05e871e56c76372510dDf
-
-
-
-Rode novamente o comando.
-  `pip install -r requirements.txt`
-  
-# Sobre:
-Este bot tem o seu código aberto, de forma que qualquer pessoa pode vê-lo, fazer uma fork, ou updates.
-
-Desenvolvi esse bot inicialmente para o meu uso pessoal. Eu decidi publica-lo
-aqui para ajudar o pessoal e com a esperança de ganhar um trocadinho com
-doações.  Com o tempo mais e mais pessoas foram abrindo issues, pedindo ajuda,
-e dando sugestões. Eu tento responder todo mundo, mas ultimamente tem sido
-difícil acompanhar a demanda. 
-
-Eu gostaria de manter este bot grátis e com o código aberto. Para que isso
-seja possível eu estou criando algumas metas de doação para que o bot possa
-ser financiado coletivamente. Atualmente eu atualizarei a barra das metas
-manualmente de forma diária, talvez no futuro eu automatize o processo de
-alguma forma.
-
-- 1 - Diariamente passar um tempo respondendo os issues, organizando o
-repositório e revisando pull requests.
-
-- [x] 2 - Um tutorial de como identificar e resolver os problemas mais comuns no
-bot, talvez com um diagrama de fluxo.
-
-- [ ] 3 - Um tutorial de como hostear o bot em um computador virtual usando o plano
-de testes de 3 meses da google cloud.
-
-- [x] 4 - Terminar de implementar e fazer a manutenção e os ajustes necessários na
-função de enviar os heróis para casa.
-
-- [x] 5 - Inserir um valor aleatório em todos os movimentos e os intervalos de
-espera do bot para dificultar ainda mais sua detecção.
-
-- [ ] 6 - Arrumar e ajustar os problemas que tem ocorrido durante o processo de
-login.
-
-- [ ] 7 - Trabalhar com o pessoal para arrumar os erros que ocorrem quando o bot é
-usado em um setup windows com dois monitores.
-
-
-``` 
-             1(15%)        2,3(30%)     4(40%)               5(60%)          6(75%)     7(85%)
-[xxxxxxxxxxxxxx|xxxxxxxxxxxxxxxx|xxxxxxxxxx|xxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxx|xxxxxxxxxx|xxxxxxxxxxxxxxx] (500$)
-                                                                                                           |
-                                                                                                          500$
-```
- 
-### Smart Chain Wallet:
-#### 0xbd06182D8360FB7AC1B05e871e56c76372510dDf
-
-### Paypal:
-[Donate:](https://www.paypal.com/donate?hosted_button_id=JVYSC6ZYCNQQQ)
-https://www.paypal.com/donate?hosted_button_id=JVYSC6ZYCNQQQ
-
-## Aviso:
-
-#### Os desenvolvedores do jogo se pronunciaram e agora o uso de auto clickers e o uso de bots é oficialmente PROIBIDO.  Não me responsabilizo por eventuais penalidades sofridas por quem usar o bot, use por sua própria conta e risco.
-
-# Instalação:
-### Baixe e instale o Python pelo [site](https://www.python.org/downloads/) ou pela [windows store](https://www.microsoft.com/p/python-37/9nj46sx7x90p?activetab=pivot:overviewtab).
+Baixe e instale o Python pelo [site](https://www.python.org/downloads/) ou pela [windows store](https://www.microsoft.com/p/python-37/9nj46sx7x90p?activetab=pivot:overviewtab).
 
 Se você baixar pelo site é importante marcar a opção para adicionar o
 python ao PATH:
@@ -120,6 +50,31 @@ pip install -r requirements.txt
   
 ![pip](https://github.com/mpcabete/bombcrypto-bot/raw/main/readme-images/pip.png)
 
+
+
+### Edite os dados do Telegram
+
+Faça uma cóia do arquivo `config.yaml.example` e renomeie para `config.yaml`. Após isso, no arquivo `config.yaml`, insira seus dados do Telegram, caso queira utilizar essa opção. Caso contrario, deixe como está. 
+
+
+1. Go to official telegram BotFather (https://t.me/BotFather/)
+
+2. Create your bot and copy bot-token (eg. 5021546203:AAHeK199jW25dfvslkOhMzAumzVecSxvVZw )
+
+3. Open config.yaml in your bot folder and paste bot-token to "telegram_token"
+
+4. In config.yaml set "log_telegram" to "True"
+
+5. Go to userinfobot (https://t.me/userinfobot) , send "/start" and copy your telegram id
+
+6. In config.yaml set "telegram_chat_id" to your telegram_id
+
+7. Go to your telegram bot and send "/start"
+
+8. Start bot
+
+
+
 ### Pronto! Agora é só iniciar o bot com o comando
 
 ```
@@ -147,31 +102,6 @@ Assim que ele iniciar ele vai começar mandando os bonecos trabalhar. Para que e
 Ele vai constantemente checar se você foi desconectado para realizar o login novamente, e se o botão “new map” tá na tela para clicar nele.
 A cada 15 minutos ele manda todos os heróis taralharem.
 
-# Send home feature:
-
-## How to use it:
-Save a screenshot of the heroes you want to be sent home in the directory: /targets/heroes-to-send-home
-
-
-## How it should behave:
-It will automatically  load the screenshots of the heroes when starting up.
-After it clicks in the heroes with the green bar to send them to work, it will look if there is any of the heroes that are saved in the directory in the screen.
-If tit finds one of the heroes, the bot checks if the home button is dark and the work button is not dark.
-If both these conditions are true, it clicks the home button.
-
-## Troubleshooting:
-#### I have not been able to fine adjust it, so here is some problems that may occur, and how to solve them:
-
-- The bot should distinguish between the dark, the clear and the gray home buttons.
-  - If the bot says that a hero is working or home, but he is not, that is because the bot is not detecting the dark home button, make the option "home: home_button_trashhold" smaller. You can also replace the image send-home.png in the targets folder.
-
-  - If the bot is trapped in an loop clicking in an clear home button, he thinks that the clear button is the dark button, make the option home: home_button_trashhold bigger.
-
-- The bot should detect the heroes you saved to the directory.
-  - If the bot clicks the wrong heroes, it thinks that another hero is the one you saved the screenshot. Make the option home: hero_trashhold bigger
-  - If it does not detect your heroes, make it smaller. You can also try replacing the screenshot with another part of the hero.
-
-  ----------------
 
 ## Como funciona?
 
@@ -261,11 +191,3 @@ exemplo na pasta “targets” para uma tirada no seu próprio computador:
 
 
 ### Algumas configuraçoes podem ser mudadas no arquivo config.yaml, nao se esqueça de reiniciar o bot caso mude as configuraçoes.
-
-## Curtiu? Dê aquela fortalecida :)
-
-### Wallet:
-#### 0xbd06182D8360FB7AC1B05e871e56c76372510dDf
-### Paypal:
-[Donate](https://www.paypal.com/donate?hosted_button_id=JVYSC6ZYCNQQQ)
-
