@@ -1,0 +1,66 @@
+---
+
+  # Time intervals configuration
+  time_intervals:
+    # Time interval for check if there are available heroes to work
+    # Default value (in minutes): 10
+    send_heroes_for_work: 10
+
+    # Time interval to update heroes position in the map,
+    # Default value (in minutes): 3
+    refresh_heroes_positions: 3
+
+    # Time interval to check for login request
+    # Default value (in minutes): 3
+    check_for_login: 5
+
+    # Time interval between moviments
+    # Default value (in seconds): 1
+    interval_between_moviments: 1
+
+    # Time interval between check qnty of BCoins in chest
+    # Default value (in seconds): 5
+    interval_between_bcoins_chest: 5
+
+  # How confident the bot needs to be to click the buttons (values from 0 to 1. 0 is the minimum value, 1 is the maximum value)
+  threshold:
+    # Default value: 0.7
+    default: 0.7
+
+    # Default value: 0.8
+    commom: 0.8
+
+    # Default value: 0.8
+    select_wallet_buttons: 0.8
+
+    # Default value: 0.9
+    go_to_work_btn: 0.9
+
+    # Default value: 0.9
+    green_bar: 0.9
+
+  # Default value: 60
+  scroll_size: 60
+
+  # Default value: 3
+  scroll_attemps: 3
+
+  # Default value: true
+  use_click_and_drag_instead_of_scroll: true
+
+  # Default value: 200
+  click_and_drag_amount: 200
+
+  # Default value: green
+  # Available options:
+  # all   = select all heroes (regardless of the stamina bar)
+  # green = select the heroes with green stamina bar (half or full)
+  # full  = select only the heroes with full stamina bar
+  select_heroes_mode: "green"
+
+  # Telegram bot config
+  telegram:
+    enabled: False
+    token: 'YOUR TOKEN HERE'
+    chat_id: 'YOUR CHAT ID HERE'
+

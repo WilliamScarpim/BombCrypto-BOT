@@ -1,0 +1,23 @@
+# IDE
+.vim
+
+# test
+test.py
+
+# tmp
+/tmp/*.png
+
+# User Config
+config.yaml
+
+# cache
+/src/__pycache__
+/captcha/__pycache__
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# vscode plugins
+/.history
