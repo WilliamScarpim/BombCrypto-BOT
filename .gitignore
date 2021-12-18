@@ -1,6 +1,8 @@
 # IDE
 .vim
 
+.idea
+
 # test
 test.py
 
