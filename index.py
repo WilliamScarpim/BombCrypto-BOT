@@ -54,7 +54,7 @@ pyautogui.PAUSE = config['time_intervals']['interval_between_moviments']
 pyautogui.FAILSAFE = False
 
 # Initial definitions
-hero_clicks = 0
+send_to_work_clicks = 0
 login_attempts = 0
 new_map_available = False
 
@@ -329,10 +329,10 @@ def click_buttons():
         move_to_with_randomness(x_center, y_center, 0.5)
         pyautogui.click()
 
-        global hero_clicks
-        hero_clicks = hero_clicks + 1
+        global send_to_work_clicks
+        send_to_work_clicks = send_to_work_clicks + 1
         # cv2.rectangle(sct_img, (x, y) , (x + w, y + h), (0,255,255),2)
-        if hero_clicks > 20:
+        if send_to_work_clicks > 20:
             inform('⚠️Too many hero clicks, try to increase the go_to_work_btn threshold.', msg_type='warn')
             return
     return len(buttons)
@@ -389,9 +389,9 @@ def click_green_bar_buttons():
 
         move_to_with_randomness(x_center, y_center, 0.5)
         pyautogui.click()
-        global hero_clicks
-        hero_clicks = hero_clicks + 1
-        if hero_clicks > 20:
+        global send_to_work_clicks
+        send_to_work_clicks = send_to_work_clicks + 1
+        if send_to_work_clicks > 20:
             inform('⚠️Too many hero clicks, try to increase the go_to_work_btn threshold.', msg_type='warn')
             return
         # cv2.rectangle(sct_img, (x, y) , (x + w, y + h), (0,255,255),2)
@@ -425,8 +425,8 @@ def click_fullbar_buttons():
 
         move_to_with_randomness(x_center, y_center, 0.5)
         pyautogui.click()
-        global hero_clicks
-        hero_clicks = hero_clicks + 1
+        global send_to_work_clicks
+        send_to_work_clicks = send_to_work_clicks + 1
 
     return len(not_working_full_bars)
 
@@ -578,6 +578,11 @@ Refresh Heroes function: Send heroes to work
 
 
 def refresh_heroes():
+
+    # restart send to work clicks
+    global send_to_work_clicks
+    send_to_work_clicks = 0
+
     inform('Finding heroes to work...', msg_type='log')
 
     go_to_heroes()
@@ -603,7 +608,7 @@ def refresh_heroes():
             empty_scrolls_attempts = empty_scrolls_attempts - 1
         scroll()
         time.sleep(2)
-    inform('{} heroes sent to work'.format(hero_clicks), msg_type='log')
+    inform('{} heroes sent to work'.format(send_to_work_clicks), msg_type='log')
     go_to_game()
 
 

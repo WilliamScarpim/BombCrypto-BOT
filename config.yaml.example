@@ -33,8 +33,8 @@
     # Default value: 0.8
     select_wallet_buttons: 0.8
 
-    # Default value: 0.93
-    go_to_work_btn: 0.93
+    # Default value: 0.90
+    go_to_work_btn: 0.90
 
     # Default value: 0.9
     green_bar: 0.9
