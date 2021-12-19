@@ -668,8 +668,9 @@ def find_screen():
     elif len(positions(images['ok'], threshold=config_threshold['default'])) > 0:
         return 7
 
-    # 1 = connect_wallet
-    if len(positions(images['connect-wallet'], threshold=config_threshold['default'])) > 0:
+    # 1 = connect_wallet or tab crash
+    if (len(positions(images['connect-wallet'], threshold=config_threshold['default'])) > 0) or \
+            (len(positions(images['tab-crash'], threshold=config_threshold['default'])) > 0):
         return 1
 
     # 2 = captcha
