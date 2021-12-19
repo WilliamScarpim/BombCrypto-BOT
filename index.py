@@ -460,7 +460,7 @@ def get_total_bcoins():
     global saldo_atual
 
     # inform
-    inform("🪙 Trying to look BCoins in chest.", msg_type='log')
+    inform("Trying to look BCoins in chest.", msg_type='log')
 
     # click on chest button
     click_btn(images['chest'])
@@ -562,11 +562,11 @@ Metamask sign in function
 
 def metamask_sign_in():
     # English button text
-    if click_btn(images['select-wallet-2-en'], name='select-wallet-2-en', timeout=10):
+    if click_btn(images['select-wallet-2-en'], name='select-wallet-2-en', timeout=10, threshold=config_threshold['select_wallet_buttons']):
         inform('Metamask button found [EN]. Sign in.', msg_type='log')
 
     # Portuguese button text
-    if click_btn(images['select-wallet-2-pt'], name='select-wallet-2-en', timeout=10):
+    elif click_btn(images['select-wallet-2-pt'], name='select-wallet-2-pt', timeout=10, threshold=config_threshold['select_wallet_buttons']):
         inform('Metamask button found [PT]. Sign in.', msg_type='log')
 
 
@@ -622,12 +622,12 @@ def send_printscreen_to_telegram():
     if config_telegram['enabled']:
 
         # take screenshot of game area
-        back_button = positions(images['go-back-arrow'], threshold=config_threshold['default'])
+        back_button = positions(images['corner'], threshold=config_threshold['default'])
 
         # from the bcoin image calculates the area of the square for print
         xx, yy, aa, bb = back_button[0]
-        x_init = xx - 50
-        y_init = yy - 30
+        x_init = xx + 10
+        y_init = yy - 70
         img_lenght = 1030
         img_height = 690
 
@@ -781,7 +781,7 @@ def main():
             if new_map_available:
                 # inform
                 inform('🗺️ New map opened! Printing screen.', msg_type='success')
-                # Send map to telegram
+                # Send print to telegram
                 send_printscreen_to_telegram()
                 # unset
                 new_map_available = False
@@ -814,6 +814,8 @@ def main():
         elif screen == 7:
             # inform
             inform('⚠ Some error occurred. Clicking ok.', msg_type='error')
+            # Send print to telegram
+            send_printscreen_to_telegram()
             # Click ON button
             click_btn(images['ok'], name='okBtn', timeout=5)
 
