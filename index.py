@@ -813,9 +813,7 @@ def main():
         # 7 = error popup
         elif screen == 7:
             # inform
-            inform('⚠ Some error occurred. Printing screen and clicking ok.', msg_type='error')
-            # send print to telegram
-            send_printscreen_to_telegram()
+            inform('⚠ Some error occurred. Clicking ok.', msg_type='error')
             # Click ON button
             click_btn(images['ok'], name='okBtn', timeout=5)
 

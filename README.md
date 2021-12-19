@@ -2,7 +2,7 @@
 
 # Sobre
 
-Este repositório é um fork do https://github.com/WilliamScarpim/BombCrypto-BOT, com as minhas modificações.
+Este repositório é um fork do https://github.com/mpcabete/bombcrypto-bot, com as minhas modificações.
 
 Bot para realizar cliques automaticos no jogo BombCrypto, com reconhecimento de telas e botões, podendo ficar longe do computador enquanto o Python joga sozinho.
 - Resolução automatica de captcha.
