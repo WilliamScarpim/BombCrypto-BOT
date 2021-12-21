@@ -14,6 +14,10 @@
     # Default value (in minutes): 3
     check_for_login: 5
 
+    # Time interval to detect freeze in some screen
+    # Default value (in minutes): 5
+    check_freeze: 5
+
     # Time interval between moviments
     # Default value (in seconds): 1
     interval_between_moviments: 1

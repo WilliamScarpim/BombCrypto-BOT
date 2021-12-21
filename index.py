@@ -57,6 +57,7 @@ pyautogui.FAILSAFE = False
 send_to_work_clicks = 0
 login_attempts = 0
 new_map_available = False
+last_click = time.time()
 
 """ 
 =================================
@@ -216,6 +217,8 @@ Click button function
 
 
 def click_btn(img, name=None, timeout=3, threshold=config_threshold['default']):
+    global last_click
+
     # forces to “flush” terminal buffer
     sys.stdout.flush()
 
@@ -243,6 +246,10 @@ def click_btn(img, name=None, timeout=3, threshold=config_threshold['default']):
         # change "moveto" to w randomness
         move_to_with_randomness(pos_click_x, pos_click_y, 0.5)
         pyautogui.click()
+
+        # save last click time
+        last_click = time.time()
+
         return True
 
 
@@ -740,8 +747,8 @@ def main():
             time.sleep(1)
             continue
 
-        # 1 = connect_wallet
-        elif screen == 1:
+        # 1 = connect_wallet or no action after X min
+        elif (screen == 1) or (now - last_click >= add_randomness(intervals['check_freeze'] * 60)):
             if now - last["login"] >= add_randomness(intervals['check_for_login'] * 60):
                 last["login"] = now
                 # Call connect_wallet function
