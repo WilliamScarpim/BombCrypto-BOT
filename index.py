@@ -57,7 +57,7 @@ pyautogui.FAILSAFE = False
 send_to_work_clicks = 0
 login_attempts = 0
 new_map_available = False
-last_click = time.time()
+last_screen_found = time.time()
 
 """ 
 =================================
@@ -217,8 +217,6 @@ Click button function
 
 
 def click_btn(img, name=None, timeout=3, threshold=config_threshold['default']):
-    global last_click
-
     # forces to “flush” terminal buffer
     sys.stdout.flush()
 
@@ -246,9 +244,6 @@ def click_btn(img, name=None, timeout=3, threshold=config_threshold['default']):
         # change "moveto" to w randomness
         move_to_with_randomness(pos_click_x, pos_click_y, 0.5)
         pyautogui.click()
-
-        # save last click time
-        last_click = time.time()
 
         return True
 
@@ -634,7 +629,7 @@ def send_printscreen_to_telegram():
         # from the bcoin image calculates the area of the square for print
         xx, yy, aa, bb = back_button[0]
         x_init = xx + 10
-        y_init = yy - 60
+        y_init = yy - 40
         img_lenght = 1030
         img_height = 690
 
@@ -734,7 +729,7 @@ def main():
 
     while True:
 
-        global new_map_available
+        global new_map_available, last_screen_found
 
         # get now time
         now = time.time()
@@ -745,11 +740,19 @@ def main():
 
         # 0 = no screen defined
         if screen == 0:
-            time.sleep(1)
-            continue
+            # Check if freezes
+            if now - last_screen_found >= add_randomness(intervals['check_freeze'] * 60):
+                # Update last found screen
+                last_screen_found = now
+                # Call connect_wallet function
+                connect_wallet()
+            else:
+                # Nothing found and in freeze time wait
+                time.sleep(1)
+                continue
 
         # 1 = connect_wallet or no action after X min
-        elif (screen == 1) or (now - last_click >= add_randomness(intervals['check_freeze'] * 60)):
+        elif screen == 1:
             if now - last["login"] >= add_randomness(intervals['check_for_login'] * 60):
                 last["login"] = now
                 # Call connect_wallet function
@@ -837,6 +840,9 @@ def main():
             inform('🚀 Map completed! Open the new one.', msg_type='success')
             # Click NEW MAP button
             click_btn(images['new-map'])
+
+        # if screen != 0, update last_screen_found
+        last_screen_found = now
 
         # Delay before start again...
         time.sleep(1)
