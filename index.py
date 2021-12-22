@@ -634,7 +634,7 @@ def send_printscreen_to_telegram():
         # from the bcoin image calculates the area of the square for print
         xx, yy, aa, bb = back_button[0]
         x_init = xx + 10
-        y_init = yy - 70
+        y_init = yy - 60
         img_lenght = 1030
         img_height = 690
 
@@ -677,7 +677,8 @@ def find_screen():
         return 3
 
     # 7 = error popup
-    elif len(positions(images['ok'], threshold=config_threshold['default'])) > 0:
+    elif (len(positions(images['ok'], threshold=config_threshold['default'])) > 0) or \
+            (len(positions(images['ok-firefox'], threshold=config_threshold['default'])) > 0):
         return 7
 
     # 1 = connect_wallet or tab crash
@@ -823,8 +824,10 @@ def main():
             inform('⚠ Some error occurred. Clicking ok.', msg_type='error')
             # Send print to telegram
             send_printscreen_to_telegram()
-            # Click ON button
-            click_btn(images['ok'], name='okBtn', timeout=5)
+            # Click OK button (game error)
+            if not click_btn(images['ok'], name='ok_btn', timeout=5):
+                # click OK button (firefox error)
+                click_btn(images['ok-firefox'], name='ok_btn_firefox', timeout=5)
 
         # 8 = new map
         elif screen == 8:
