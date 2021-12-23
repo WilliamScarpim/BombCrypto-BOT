@@ -11,8 +11,8 @@
     refresh_heroes_positions: 3
 
     # Time interval to check for login request
-    # Default value (in minutes): 3
-    check_for_login: 3
+    # Default value (in minutes): 5
+    check_for_login: 5
 
     # Time interval to detect freeze in some screen
     # Default value (in minutes): 5
