@@ -467,6 +467,7 @@ def get_total_bcoins():
     # click on chest button
     click_btn(images['chest'])
 
+    # wait until "coin-icon" apears
     i = 10
     coins_pos = positions(images['coin-icon'], threshold=config_threshold['default'])
     while len(coins_pos) == 0:
@@ -477,12 +478,15 @@ def get_total_bcoins():
         time.sleep(5)
 
     if len(coins_pos) == 0:
-        # inform error (not received BCoin value from server)
+        # inform error in "coin-icon" dont apears
         inform("🪙 Error fetching Bcoins from chest.", msg_type='error')
         # close window
         click_btn(images['x'])
 
         return
+
+    # after "coin-icon" apears wait until receive BCoin value from server
+    time.sleep(30)
 
     # from the bcoin image calculates the area of the square for print
     k, l, m, n = coins_pos[0]
@@ -629,7 +633,7 @@ def send_printscreen_to_telegram():
         # from the bcoin image calculates the area of the square for print
         xx, yy, aa, bb = back_button[0]
         x_init = xx + 10
-        y_init = yy - 40
+        y_init = yy - 20
         img_lenght = 1030
         img_height = 690
 
