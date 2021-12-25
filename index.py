@@ -578,6 +578,29 @@ def metamask_sign_in():
 
 """
 ---------------------
+Metamask login function
+---------------------
+"""
+
+
+def metamask_login():
+
+    # Send password to metamask page
+    pyautogui.write(config["metamask_password"])
+
+    time.sleep(1)
+
+    # English button text
+    if click_btn(images['metamask-unlock-en'], name='select-wallet-2-en', timeout=10, threshold=config_threshold['select_wallet_buttons']):
+        inform('Metamask login button found [EN]. Send password.', msg_type='log')
+
+    # Portuguese button text
+    elif click_btn(images['metamask-unlock-pt'], name='select-wallet-2-pt', timeout=10, threshold=config_threshold['select_wallet_buttons']):
+        inform('Metamask login button found [PT]. Send password.', msg_type='log')
+
+
+"""
+---------------------
 Refresh Heroes function: Send heroes to work
 ---------------------
 """
@@ -670,7 +693,12 @@ Return:
 def find_screen():
     # DO NOT CHANGE THE ORDER ABOVE (PRIORITY).
 
-    # 3 = metamask
+    # 9 = matamask login
+    if (len(positions(images['metamask-unlock-en'], threshold=0.90)) > 0) or \
+            (len(positions(images['metamask-unlock-pt'], threshold=0.90)) > 0):
+        return 9
+
+    # 3 = metamask wallet
     if (len(positions(images['select-wallet-2-en'], threshold=0.90)) > 0) or \
             (len(positions(images['select-wallet-2-pt'], threshold=0.90)) > 0):
         return 3
@@ -844,6 +872,10 @@ def main():
             inform('🚀 Map completed! Open the new one.', msg_type='success')
             # Click NEW MAP button
             click_btn(images['new-map'])
+
+        # 3 = metamask login
+        elif screen == 9:
+            metamask_login()
 
         # if screen != 0, update last_screen_found
         last_screen_found = now

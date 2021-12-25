@@ -1,5 +1,8 @@
 ---
 
+  # Matamask password
+  metamask_password: 'YOUR METAMASK PASSWORD HERE'
+
   # Time intervals configuration
   time_intervals:
     # Time interval for check if there are available heroes to work
