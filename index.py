@@ -655,10 +655,10 @@ def send_printscreen_to_telegram():
 
         # from the bcoin image calculates the area of the square for print
         xx, yy, aa, bb = back_button[0]
-        x_init = xx + 10
-        y_init = yy - 20
-        img_lenght = 1030
-        img_height = 690
+        x_init = xx - 220
+        y_init = yy - 180
+        img_lenght = 1440
+        img_height = 670
 
         # take screenshot
         my_screen = pyautogui.screenshot(region=(x_init, y_init, img_lenght, img_height))
