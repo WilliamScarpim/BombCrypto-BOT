@@ -653,24 +653,28 @@ def send_printscreen_to_telegram():
         # take screenshot of game area
         back_button = positions(images['corner'], threshold=config_threshold['default'])
 
-        # from the bcoin image calculates the area of the square for print
-        xx, yy, aa, bb = back_button[0]
-        x_init = xx - 220
-        y_init = yy #  -180
-        img_lenght = 1440
-        img_height = 670
+        if back_button:
+            # from the bcoin image calculates the area of the square for print
+            xx, yy, aa, bb = back_button[0]
+            x_init = xx - 220
+            y_init = yy #  -180
+            img_lenght = 1440
+            img_height = 670
 
-        # take screenshot
-        my_screen = pyautogui.screenshot(region=(x_init, y_init, img_lenght, img_height))
-        # save image
-        img_dir = os.path.dirname(os.path.realpath(__file__)) + r'\tmp\printscreen.png'
-        my_screen.save(img_dir)
-        # delau
-        time.sleep(2)
-        # send image in telegram
-        if config_telegram['enabled']:
-            telegram_bot_send_photo(img_dir)
+            # take screenshot
+            my_screen = pyautogui.screenshot(region=(x_init, y_init, img_lenght, img_height))
+            # save image
+            img_dir = os.path.dirname(os.path.realpath(__file__)) + r'\tmp\printscreen.png'
+            my_screen.save(img_dir)
+            # delau
+            time.sleep(2)
+            # send image in telegram
+            if config_telegram['enabled']:
+                telegram_bot_send_photo(img_dir)
 
+        else:
+            # inform error in send print screen
+            inform("🪙 Error durint print screen", msg_type='error')
 
 """
 ---------------------
