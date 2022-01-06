@@ -697,6 +697,11 @@ Return:
 def find_screen():
     # DO NOT CHANGE THE ORDER ABOVE (PRIORITY).
 
+    # 10 = lubuntu upgrade close
+    if (len(positions(images['lubuntu-upgrade-close'], threshold=0.90)) > 0) or \
+            (len(positions(images['lubuntu-upgrade-close'], threshold=0.90)) > 0):
+        return 10
+
     # 9 = matamask login
     if (len(positions(images['metamask-unlock-en'], threshold=0.90)) > 0) or \
             (len(positions(images['metamask-unlock-pt'], threshold=0.90)) > 0):
@@ -877,9 +882,16 @@ def main():
             # Click NEW MAP button
             click_btn(images['new-map'])
 
-        # 3 = metamask login
+        # 9 = metamask login
         elif screen == 9:
             metamask_login()
+
+        # 10 = ubuntu upgrade dialog close
+        elif screen == 10:
+            # inform
+            inform('⚠ Ubuntu upgrade dialogbox. Clicking close.', msg_type='error')
+            # Click CLOSE button
+            click_btn(images['lubuntu-upgrade-close'])
 
         # if screen != 0, update last_screen_found
         last_screen_found = now
