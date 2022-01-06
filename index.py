@@ -651,15 +651,15 @@ def send_printscreen_to_telegram():
     if config_telegram['enabled']:
 
         # take screenshot of game area
-        corner = positions(images['corner'], threshold=config_threshold['default'])
+        notification_button = positions(images['notification'], threshold=config_threshold['default'])
 
-        if len(corner) > 0:
+        if len(notification_button) > 0:
             # from the bcoin image calculates the area of the square for print
-            xx, yy, aa, bb = corner[0]
-            x_init = xx - 220
-            y_init = yy #  -180
+            xx, yy, aa, bb = notification_button[0]
+            x_init = xx - 350
+            y_init = yy - 680
             img_lenght = 1440
-            img_height = 670
+            img_height = 680
 
             # take screenshot
             my_screen = pyautogui.screenshot(region=(x_init, y_init, img_lenght, img_height))
@@ -674,7 +674,7 @@ def send_printscreen_to_telegram():
 
         else:
             # inform error in send print screen
-            inform("🪙 Error durint print screen", msg_type='error')
+            inform("🪙 Error during printing screen", msg_type='error')
 
 """
 ---------------------
@@ -759,7 +759,7 @@ def main():
 
     # Inform
     inform("🤖 TRAPA-TRADE STARTED! It's time to earn some BCoins 💰!!!", msg_type='info')
-
+    
     # Initial time control set
     last = {
         "login": 0,
