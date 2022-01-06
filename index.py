@@ -838,7 +838,8 @@ def main():
                 # unset
                 new_map_available = False
 
-            inform('Map screen.', msg_type='log')
+            # inform('Map screen.', msg_type='log')
+
             if last["heroes"] == 0:
                 last["heroes"] = now
             if last["refresh_heroes"] == 0:
