@@ -651,11 +651,11 @@ def send_printscreen_to_telegram():
     if config_telegram['enabled']:
 
         # take screenshot of game area
-        back_button = positions(images['corner'], threshold=config_threshold['default'])
+        corner = positions(images['corner'], threshold=config_threshold['default'])
 
-        if back_button:
+        if len(corner) > 0:
             # from the bcoin image calculates the area of the square for print
-            xx, yy, aa, bb = back_button[0]
+            xx, yy, aa, bb = corner[0]
             x_init = xx - 220
             y_init = yy #  -180
             img_lenght = 1440
