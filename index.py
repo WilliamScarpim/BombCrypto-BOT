@@ -759,7 +759,7 @@ def main():
 
     # Inform
     inform("🤖 TRAPA-TRADE STARTED! It's time to earn some BCoins 💰!!!", msg_type='info')
-    
+
     # Initial time control set
     last = {
         "login": 0,
@@ -857,10 +857,10 @@ def main():
                     last["BCoins_in_chest"] = now
                     get_total_bcoins()
 
-                # sleep for the heroes refresh time to save processing
-                t = 60  # seconds of delay
-                inform('Nothing to do. Delay of ' + str(t) + 's to keep proccessing.', msg_type='success')
-                time.sleep(t)
+                # # sleep for the heroes refresh time to save processing
+                # t = 60  # seconds of delay
+                # inform('Nothing to do. Delay of ' + str(t) + 's to keep proccessing.', msg_type='success')
+                # time.sleep(t)
 
         # 7 = error popup
         elif screen == 7:
