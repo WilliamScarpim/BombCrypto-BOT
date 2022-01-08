@@ -746,10 +746,6 @@ def main():
     # Inform
     inform("🤖 TRAPA-TRADE STARTED! It's time to earn some BCoins 💰!!!", msg_type='info')
 
-    time.sleep(5)
-    send_printscreen_to_telegram()
-    exit()
-
     # Initial time control set
     last = {
         "login": 0,
