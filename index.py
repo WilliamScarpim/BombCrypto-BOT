@@ -650,31 +650,17 @@ def send_printscreen_to_telegram():
     # if telegram is enabled:
     if config_telegram['enabled']:
 
-        # take screenshot of game area
-        notification_button = positions(images['notification'], threshold=config_threshold['default'])
+        # take screenshot of entire screen
+        my_screen = pyautogui.screenshot()
+        # save image
+        img_dir = os.path.dirname(os.path.realpath(__file__)) + r'\tmp\printscreen.png'
+        my_screen.save(img_dir)
+        # delay
+        time.sleep(2)
+        # send image in telegram
+        if config_telegram['enabled']:
+            telegram_bot_send_photo(img_dir)
 
-        if len(notification_button) > 0:
-            # from the bcoin image calculates the area of the square for print
-            xx, yy, aa, bb = notification_button[0]
-            x_init = xx - 350
-            y_init = yy - 680
-            img_lenght = 1440
-            img_height = 680
-
-            # take screenshot
-            my_screen = pyautogui.screenshot(region=(x_init, y_init, img_lenght, img_height))
-            # save image
-            img_dir = os.path.dirname(os.path.realpath(__file__)) + r'\tmp\printscreen.png'
-            my_screen.save(img_dir)
-            # delau
-            time.sleep(2)
-            # send image in telegram
-            if config_telegram['enabled']:
-                telegram_bot_send_photo(img_dir)
-
-        else:
-            # inform error in send print screen
-            inform("🪙 Error during printing screen", msg_type='error')
 
 """
 ---------------------
@@ -759,6 +745,10 @@ def main():
 
     # Inform
     inform("🤖 TRAPA-TRADE STARTED! It's time to earn some BCoins 💰!!!", msg_type='info')
+
+    time.sleep(5)
+    send_printscreen_to_telegram()
+    exit()
 
     # Initial time control set
     last = {
