@@ -311,35 +311,6 @@ def scroll():
     else:
         pyautogui.dragRel(0, -config['click_and_drag_amount'], duration=1, button='left')
 
-
-"""
----------------------
-Click buttons function
----------------------
-"""
-
-
-def click_buttons():
-    buttons = positions(images['go-work'], threshold=config_threshold['go_to_work_btn'])
-    # print('buttons: {}'.format(len(buttons)))
-    for (x, y, w, h) in buttons:
-
-        # Determine center of target
-        x_center = x + (w / 2)
-        y_center = y + (h / 2)
-
-        move_to_with_randomness(x_center, y_center, 0.5)
-        pyautogui.click()
-
-        global send_to_work_clicks
-        send_to_work_clicks = send_to_work_clicks + 1
-        # cv2.rectangle(sct_img, (x, y) , (x + w, y + h), (0,255,255),2)
-        if send_to_work_clicks > 20:
-            inform('⚠️Too many hero clicks, try to increase the go_to_work_btn threshold.', msg_type='warn')
-            return
-    return len(buttons)
-
-
 """
 ---------------------
 Is Working function
@@ -611,6 +582,7 @@ def refresh_heroes():
     # restart send to work clicks
     global send_to_work_clicks
     send_to_work_clicks = 0
+    buttons_clicked = 0
 
     inform('Finding heroes to work...', msg_type='log')
 
@@ -631,12 +603,14 @@ def refresh_heroes():
         elif config['select_heroes_mode'] == 'green':
             buttons_clicked = click_green_bar_buttons()
         else:
-            buttons_clicked = click_buttons()
+            if click_btn(images['all-heroes']):
+                break
 
         if buttons_clicked == 0:
             empty_scrolls_attempts = empty_scrolls_attempts - 1
         scroll()
         time.sleep(2)
+
     inform('{} heroes sent to work'.format(send_to_work_clicks), msg_type='log')
     go_to_game()
 
