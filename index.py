@@ -673,9 +673,13 @@ def find_screen():
         return 3
 
     # 7 = error popup
-    elif (len(positions(images['ok'], threshold=config_threshold['default'])) > 0) or \
+    if (len(positions(images['ok'], threshold=config_threshold['default'])) > 0) or \
             (len(positions(images['ok-firefox'], threshold=config_threshold['default'])) > 0):
         return 7
+
+    # 11 = accept terms
+    if len(positions(images['accept2'], threshold=config_threshold['default'])) > 0:
+        return 11
 
     # 1 = connect_wallet or tab crash
     if (len(positions(images['connect-wallet'], threshold=config_threshold['default'])) > 0) or \
@@ -695,7 +699,7 @@ def find_screen():
         return 5
 
     # 8 = new map
-    elif len(positions(images['new-map'], threshold=config_threshold['default'])) > 0:
+    if len(positions(images['new-map'], threshold=config_threshold['default'])) > 0:
         return 8
 
     # 6 = page work (map)
@@ -853,6 +857,15 @@ def main():
             inform('⚠ Ubuntu upgrade dialogbox. Clicking close.', msg_type='error')
             # Click CLOSE button
             click_btn(images['lubuntu-upgrade-close'])
+
+        # 11 = accept terms
+        elif screen == 11:
+            # inform
+            inform('Accepting terms.', msg_type='emphasis')
+            # Click
+            click_btn(images['accept1'])
+            time.sleep(5)
+            click_btn(images['accept2'])
 
         # if screen != 0, update last_screen_found
         last_screen_found = now
