@@ -681,6 +681,10 @@ def find_screen():
     if len(positions(images['accept2'], threshold=config_threshold['default'])) > 0:
         return 11
 
+    # 12 = connect metamask
+    if len(positions(images['connect_meta'], threshold=config_threshold['default'])) > 0:
+        return 12
+
     # 1 = connect_wallet or tab crash
     if (len(positions(images['connect-wallet'], threshold=config_threshold['default'])) > 0) or \
             (len(positions(images['tab-crash'], threshold=config_threshold['default'])) > 0):
@@ -866,6 +870,15 @@ def main():
             click_btn(images['accept1'])
             time.sleep(5)
             click_btn(images['accept2'])
+
+        # 12 = connecting with metamask
+        elif screen == 12:
+            # inform
+            inform('Connecting with metamask.', msg_type='emphasis')
+            # Click
+            click_btn(images['connect_meta'])
+
+
 
         # if screen != 0, update last_screen_found
         last_screen_found = now
