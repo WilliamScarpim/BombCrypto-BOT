@@ -457,12 +457,12 @@ def get_total_bcoins():
         return
 
     # after "coin-icon" apears wait until receive BCoin value from server
-    time.sleep(30)
+    time.sleep(10)
 
     # from the bcoin image calculates the area of the square for print
     k, l, m, n = coins_pos[0]
     k = k - 44
-    l = l + 130
+    l = l + 180
     m = 200
     n = 50
 
